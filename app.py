@@ -1,30 +1,17 @@
 from flask import Flask, render_template, request
-import datetime
+
+from view.DataToHTML import dataLoading, getCityNow
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():  # put application's code here
-
-    roomType = ['1居室', '1室1厅', '2室1厅', '2室2厅', '3室1厅', '3室2厅', '4室1厅', '4室2厅']
-    dict = {'name': 'zhangsan'}
-    years = build_time_scope()
-    return render_template('city.html', roomTypeList=roomType, dict=dict, buildTimeList=years)
+    roomType, floorType, years = dataLoading()
+    return render_template('city.html', roomTypeList=roomType, floorTypeList=floorType, buildTimeList=years)
 
 
-# 返回可选的建造年份
-def build_time_scope():
-    years = []
-    year = datetime.datetime.now().year
-    while year - 10 >= 1980:
-        interval = str(year - 10) + "-" + str(year)
-        years.append(interval)
-        print(interval)
-        year -= 10
-    return years
-
-
+# 获得预测值
 @app.route('/prarmsSubmit/', methods=['POST', 'GET'])
 def prarmsSubmit():
     address1 = request.args.get('address1')
@@ -34,16 +21,22 @@ def prarmsSubmit():
     buildTime = request.args.get('buildTime')
     area = request.args.get('area')
 
-    dict = {"area": [area], "floor": [floorType],
-            "build_time": [buildTime], "location": [address1 + "-" + address2], "room_shape": [roomType]}
+    dict = {"area": [area], "floor": [floorType],"build_time": [buildTime], "location": [address1 + "-" + address2], "room_shape": [roomType]}
 
     print(dict)
-
+    # 调用预测函数
     s = "10000"
     return s
 
 
+# 返回定位结果
+@app.route('/getLocation/', methods=['POST', 'GET'])
+def getLocation():
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
 
+    dict = getCityNow(latitude, longitude)
+    return dict
 
 
 if __name__ == '__main__':

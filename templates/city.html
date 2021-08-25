@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 		<meta charset="UTF-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<script src="./js/cityAndPro.js"></script>
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
@@ -20,7 +21,7 @@
 
 	</head>
 
-<body background=url_for('static', filename='images/default.jpg', _external=True>
+<body onload="getLocation()",background=url_for('static', filename='images/default.jpg', _external=True>
 <div class="main" style="background-image: url('static/images/default.jpg')">
 
 <div class="container" >
@@ -40,22 +41,11 @@
 						<span class="j_3"></span>
 						<span class="j_4"></span>
 						<div class="title"><img src="img/page1/icon4.png" />查房源</div>
-						<div class="data_num_box">
+						<div class="data_num_box" style="height: 250px;">
 							<div class="data_box1 active">
-								<div class="data_title">总数据量</div>
-								<font class="font qianlan" face="font01">657.5K</font>
-								<span>条</span>
-								<div class="j1_box1">
-									<span class="j1_1"></span>
-									<span class="j1_2"></span>
-									<span class="j1_3"></span>
-									<span class="j1_4"></span>
-								</div>
-							</div>
-							<div class="data_box2">
-								<div class="data_title">今日数据量</div>
-								<font class="font shenlan" face="font01">0.87K</font>
-								<span>条</span>
+                                <div class="data_title"><h5>当前城市</h5></div>
+                                <font class="font qianlan" face="font01"><h2 id="provinceNow"></h2></font>
+                                <font class="font qianlan" face="font01"><h2 id="cityNow"></h2></font>
 							</div>
 						</div>
 
@@ -103,9 +93,12 @@
                         </div>
                         <div class="col-sm-4 ">
                             <select  class="form-control" id="floor_Type">
-                                <option value="">低层</option>
-                                <option value="">中层</option>
-                                <option value="">高层</option>
+                                {% for floorType in floorTypeList %}
+                                    <option>{{ floorType }}</option>
+                                {% endfor %}
+{#                                <option value="">低层</option>#}
+{#                                <option value="">中层</option>#}
+{#                                <option value="">高层</option>#}
                             </select>
                         </div>
                     </div>
@@ -140,17 +133,13 @@
                         </div>
                     </div>
 
-                    <div class="center-block">
-                        <div  class="col-sm-4">
 
-                            <div class="data_title" style="height: 80px"><h3>预测房价(万元)</h3></div>
+                    <div class="data_num_box" style="height: 250px;">
+							<div class="data_box1 active">
+                                <div class="data_title" style="height: 80px"><h3>预测房价(万元)</h3></div>
                             <div class="data_title"><h1 id="price"></h1></div>
-                        </div>
-
+							</div>
                     </div>
-
-
-
 
                     </div>
                 </div>
@@ -248,97 +237,72 @@
 
 		</div>
 
-
-{#<div class="container">#}
-{##}
-{##}
-{#    <div class="col-sm-8">#}
-{#        <div class="col-sm-2">#}
-{#            <h5>地址：</h5>#}
-{#        </div>#}
-{#        <div class="col-sm-3 ">#}
-{#            <select name="input_province" id="input_province" class="form-control">#}
-{#                <option value="">--省级行政区--</option>#}
-{#            </select>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <select name="input_city" id="input_city" class="form-control">#}
-{#                <option value="">--请选择--</option>#}
-{#            </select>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <div class="col-sm-8">#}
-{#        {{ dict.name }}#}
-{#        <div class="col-sm-2">#}
-{#            <h5>房型：</h5>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <select  class="form-control" id="room_Type">#}
-{#                 <option value="">--请选择--</option>#}
-{#              {% for roomType in roomTypeList %}#}
-{#                  <option>{{ roomType }}</option>#}
-{#              {% endfor %}#}
-{#          </select>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <div class="col-sm-8">#}
-{#        <div class="col-sm-2">#}
-{#            <h5>楼层：</h5>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <select  class="form-control" id="floor_Type">#}
-{#                     <option value="">低层</option>#}
-{#                     <option value="">中层</option>#}
-{#                     <option value="">高层</option>#}
-{#                 </select>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <div class="col-sm-8">#}
-{#        <div class="col-sm-2">#}
-{#            <h5>面积（平方米）：</h5>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <input id="area" class="form-control transparent" placeholder="房屋面积">#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{##}
-{#    <div class="col-sm-8">#}
-{#        <div class="col-sm-2">#}
-{#            <h5>建造年份：</h5>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <select  class="form-control" id="build_Type">#}
-{#                <option value="">--请选择--</option>#}
-{#                {% for buildTime in buildTimeList %}#}
-{#                    <option>{{ buildTime }}</option>#}
-{#                {% endfor %}#}
-{#            </select>#}
-{#        </div>#}
-{#        <div class="col-sm-3">#}
-{#            <button onclick="predict()" class="btn btn-info btn-fill" id="predict" name="predict">预测房价</button></br>#}
-{##}
-{#            <div id="price">#}
-{#                预测房价为:#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{##}
-{##}
-{##}
-{#    </div>#}
-{##}
-{##}
-{#</div>#}
-
-
 </div>
 
 
 </body>
+
+{#定位，得到当前城市#}
+<script>
+var x=document.getElementById("provinceNow");
+function getLocation()
+{
+if(navigator.geolocation)
+	{
+	   navigator.geolocation.getCurrentPosition(showPosition,showError);
+	}
+else
+	{
+	x.innerHTML="该浏览器版本不支持定位";
+	}
+}
+function showPosition(position)//经纬度获取
+{
+    var lat=position.coords.latitude;
+    var lng=position.coords.longitude;
+
+    data={
+        'latitude':lat,
+        'longitude':lng
+    }
+    $.ajax({
+            type: 'GET',
+            data: data,
+            url: "/getLocation/",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                alert(JSON.stringify(data))
+                alert("当前所在城市："+data.province+" "+data.city+" 纬度："+lat+ "经度："+lng);
+
+                $("#provinceNow").html(data.province)
+                $("#cityNow").html(data.city)
+            }
+        });
+
+
+}
+function showError(error)//错误抛出
+{
+	switch(error.code)
+	{
+	case error.PERMISSION_DENIED:
+	x.innerHTML="用户拒绝对获取地理位置的请求。"
+	break;
+	case error.POSITION_UNAVAILABLE:
+		x.innerHTML="位置信息是不可用的。"
+		break;
+	case error.TIMEOUT:
+		x.innerHTML="请求用户地理位置超时。"
+		break;
+	case error.UNKNOWN_ERROR:
+		x.innerHTML="未知错误。"
+		break;
+	}
+}
+</script>
+
+{#获得用户输入并返回预测结果#}
 <script type="text/javascript">
     function predict() {
 
@@ -368,15 +332,13 @@
                 alert(data);
                 $("#price").html(data)
 
-
-                //location.reload();
             }
-
         });
     }
 
 </script>
 
+{#获取省级行政区以及地级市#}
 <script>
 			$(function() {
 				var html = "";
