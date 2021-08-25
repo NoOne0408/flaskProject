@@ -345,13 +345,16 @@
         var address1 = $("#input_province").find("option:selected").text();
         var address2 = $("#input_city").find("option:selected").text();
         var roomType = $("#room_Type").find("option:selected").text();
+        var floorType=$("#floor_Type").find("option:selected").text();
         var buildTime = $("#build_Type").find("option:selected").text();
         var area = $("#area").val()
         alert("地址：" + address1 + " " + address2 + "\n" + "房型：" + roomType + "\n" + "建造时间：" + buildTime + "\n" + "面积：" + area);
 
         var data = {
-            'address1': address1, 'address2': address2,
+            'address1': address1,
+            'address2': address2,
             'roomType': roomType,
+            'floorType':floorType,
             'buildTime': buildTime,
             'area': area
         }
