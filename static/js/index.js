@@ -242,10 +242,12 @@ $(document).ready(function() {
 		myChart1.setOption(option2);
 	}
 
+
 	$('.data_box1').click(function() {
 		$('.j1_box1').removeClass("display");
 		$('.j1_box2').addClass("display");
 		echart1();
+
 	});
 
 	$('.data_box2').click(function() {

@@ -4,14 +4,18 @@
 		<meta charset="UTF-8">
         <meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<script src="./js/cityAndPro.js"></script>
+		<script src="../js/cityAndPro.js"></script>
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 
     <script src="{{ url_for('static',filename='js/cityAndPro.js') }}"></script>
+
+<script src="{{ url_for('static',filename='js/echarts.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/echart_part1.js') }}"></script>
+<script src="{{ url_for('static',filename='js/office_efficiency_data.js') }}"></script>
+
     <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static',filename='css/coming-sssoon.css') }}" rel="stylesheet"/>
-
-
+<link href="{{ url_for('static',filename='css/comon0.css') }}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/reset.css') }}" media="all" />
 		<link rel="stylesheet" href="{{ url_for('static',filename='css/common.css') }}" media="all" />
@@ -20,6 +24,23 @@
 
 
 	</head>
+{#<script>#}
+{#	$(window).load(function(){#}
+{#             $(".loading").fadeOut()#}
+{#            })#}
+{##}
+{#/****/#}
+{#$(document).ready(function(){#}
+{#	var whei=$(window).width()#}
+{#	$("html").css({fontSize:whei/20})#}
+{#	$(window).resize(function(){#}
+{#		var whei=$(window).width()#}
+{#	 $("html").css({fontSize:whei/20})#}
+{#});#}
+{#	});#}
+{#	</script>#}
+{#<script src="../js/echarts.min.js"></script>#}
+{#<script language="JavaScript" src="../js/echart_part1.js"></script>#}
 
 <body onload="getLocation()",background=url_for('static', filename='images/default.jpg', _external=True>
 <div class="main" style="background-image: url('static/images/default.jpg')">
@@ -145,7 +166,6 @@
                 </div>
 
 
-
 				<div class="main_center">
 					<div class="center_top">
 						<span class="j_1"></span>
@@ -170,26 +190,38 @@
 						<span class="j_3"></span>
 						<span class="j_4"></span>
 						<div class="title"><img src="img/page1/icon2.png" />社区数据接入</div>
-						<div class="sq_data">
-							<div class="sq_left">
-								<div class="sq_left_t">
-									<div class="data_box" style="text-align: center;">
-										<font class="font3 qianlan" face="font01">3252</font><span>个</span>
-										<div class="data_title2">社区总数量</div>
-									</div>
-								</div>
-								<span class="line"></span>
-								<div class="sq_left_b">
-									<div class="data_box" style="text-align: center;">
-										<font class="font3 huangse" face="font01">1521</font><span>个</span>
-										<div class="data_title2">已接入社区数量</div>
-									</div>
-								</div>
-							</div>
-							<div id="sq_right">
-								<!--echarts-->
-							</div>
-						</div>
+                          <div class="center_bottom_left">
+                              <div class="allnav" id="echart4"></div>
+                          </div>
+                        <div class="center_bottom_right">
+{#	                             <div  class="col-info">#}
+{#                                     <div class="title">耗时步骤分析</div>#}
+{#                                     <div class="content" id="time-step-detial"></div>#}
+{#                                 </div>#}
+                             <div class="allnav" id="time-step-detial"></div>
+                        </div>
+
+
+{#						<div class="sq_data">#}
+{#							<div class="sq_left">#}
+{#								<div class="sq_left_t">#}
+{#									<div class="data_box" style="text-align: center;">#}
+{#										<font class="font3 qianlan" face="font01">3252</font><span>个</span>#}
+{#										<div class="data_title2">社区总数量</div>#}
+{#									</div>#}
+{#								</div>#}
+{#								<span class="line"></span>#}
+{#								<div class="sq_left_b">#}
+{#									<div class="data_box" style="text-align: center;">#}
+{#										<font class="font3 huangse" face="font01">1521</font><span>个</span>#}
+{#										<div class="data_title2">已接入社区数量</div>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#							<div id="sq_right">#}
+{#								<!--echarts-->#}
+{#							</div>#}
+{#						</div>#}
 					</div>
 				</div>
 
@@ -200,30 +232,38 @@
 						<span class="j_3"></span>
 						<span class="j_4"></span>
 						<div class="title"><img src="img/page1/icon5.png" />数据建模</div>
-						<div class="data_sjjm">
-							<div class="data_box2">
-								<div class="data_title">基础库</div>
-								<font class="font qianlan" face="font01">451</font>
-								<span>个</span>
-							</div>
-							<div class="data_box2">
-								<div class="data_title">主题库</div>
-								<font class="font shenlan" face="font01">876</font>
-								<span>个</span>
-							</div>
-							<div class="data_box2">
-								<div class="data_title">专题库</div>
-								<font class="font zise" face="font01">678</font>
-								<span>个</span>
-							</div>
-						</div>
+
+
+
+{#						<div class="data_sjjm">#}
+{#							<div class="data_box2">#}
+{#								<div class="data_title">基础库</div>#}
+{#								<font class="font qianlan" face="font01">451</font>#}
+{#								<span>个</span>#}
+{#							</div>#}
+{#							<div class="data_box2">#}
+{#								<div class="data_title">主题库</div>#}
+{#								<font class="font shenlan" face="font01">876</font>#}
+{#								<span>个</span>#}
+{#							</div>#}
+{#							<div class="data_box2">#}
+{#								<div class="data_title">专题库</div>#}
+{#								<font class="font zise" face="font01">678</font>#}
+{#								<span>个</span>#}
+{#							</div>#}
+{#						</div>#}
+
 					</div>
+
+
+
 					<div class="right_bottom">
 						<span class="j_1"></span>
 						<span class="j_2"></span>
 						<span class="j_3"></span>
 						<span class="j_4"></span>
 						<div class="title"><img src="img/page1/icon1.png" />热门库</div>
+                         	<div id="progress1_chart"></div>
 						<div class="qiuqiu">
 							<img src="img/page1/qiuqiu.png" />
 						</div>

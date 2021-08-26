@@ -53,6 +53,28 @@
 	position: relative;
 	box-sizing: border-box;
 }
+.center_bottom_left{
+	width: 50%;
+	height: 340px;
+
+	background: rgba(41,85,252,.2);
+	position: relative;
+	box-sizing: border-box;
+	float: left;
+}
+
+.center_bottom_right{
+	width: 50%;
+	height: 340px;
+
+	background: rgba(41,85,252,.2);
+	position: relative;
+	box-sizing: border-box;
+	float: right;
+}
+
+.center_bottom_right.col-info{height:45rem;}
+.center_bottom_right.content{height:41rem}
 
 /*main右侧*/
 .main_right{
@@ -496,7 +518,7 @@
 
 #progress1_chart{
 	width: 100%;
-	height: 34.8rem;
+	height: 60rem;
 }
 .tab_pm{
 	width: 10.5rem;
