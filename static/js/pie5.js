@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Awesome-pyecharts</title>
-            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
 
-</head>
-<body>
-    <div id="7fa5bf532c924a88b1b5a68dc21bd6d4" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_7fa5bf532c924a88b1b5a68dc21bd6d4 = echarts.init(
-            document.getElementById('7fa5bf532c924a88b1b5a68dc21bd6d4'), 'white', {renderer: 'canvas'});
-        var option_7fa5bf532c924a88b1b5a68dc21bd6d4 = {
+        var chart_de030b1f21ca4a628e4357434a9b8ab4 = echarts.init(
+            document.getElementById('de030b1f21ca4a628e4357434a9b8ab4'), 'white', {renderer: 'canvas'});
+        var option_de030b1f21ca4a628e4357434a9b8ab4 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -53,12 +44,12 @@
             "clockwise": true,
             "data": [
                 {
-                    "name": "100-150",
-                    "value": 33.6
+                    "name": "200\u4ee5\u4e0a",
+                    "value": 7.58
                 },
                 {
                     "name": "\u5176\u4ed6",
-                    "value": 66.4
+                    "value": 92.42
                 }
             ],
             "radius": [
@@ -102,7 +93,7 @@
     "legend": [
         {
             "data": [
-                "100-150",
+                "200\u4ee5\u4e0a",
                 "\u5176\u4ed6"
             ],
             "selected": {}
@@ -126,7 +117,5 @@
         "padding": 5
     }
 };
-        chart_7fa5bf532c924a88b1b5a68dc21bd6d4.setOption(option_7fa5bf532c924a88b1b5a68dc21bd6d4);
+        chart_de030b1f21ca4a628e4357434a9b8ab4.setOption(option_de030b1f21ca4a628e4357434a9b8ab4);
     </script>
-</body>
-</html>

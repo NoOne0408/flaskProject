@@ -1,7 +1,8 @@
-<script>
-    var chart_1af4b50fc15548d4a7c1d2a0bdbe4fcf = echarts.init(
-            document.getElementById('1af4b50fc15548d4a7c1d2a0bdbe4fcf'), 'white', {renderer: 'canvas'});
-        var option_1af4b50fc15548d4a7c1d2a0bdbe4fcf = {
+
+    <script>
+        var chart_e8e3b30a70b242c4a4d1a6a99c4ab991 = echarts.init(
+            document.getElementById('e8e3b30a70b242c4a4d1a6a99c4ab991'), 'white', {renderer: 'canvas'});
+        var option_e8e3b30a70b242c4a4d1a6a99c4ab991 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -43,12 +44,12 @@
             "clockwise": true,
             "data": [
                 {
-                    "name": "50-100",
-                    "value": 41.9
+                    "name": "0-50",
+                    "value": 2.84
                 },
                 {
                     "name": "\u5176\u4ed6",
-                    "value": 58.1
+                    "value": 97.16
                 }
             ],
             "radius": [
@@ -92,7 +93,7 @@
     "legend": [
         {
             "data": [
-                "50-100",
+                "0-50",
                 "\u5176\u4ed6"
             ],
             "selected": {}
@@ -116,7 +117,5 @@
         "padding": 5
     }
 };
-        chart_1af4b50fc15548d4a7c1d2a0bdbe4fcf.setOption(option_1af4b50fc15548d4a7c1d2a0bdbe4fcf);
-
-</script>
-
+        chart_e8e3b30a70b242c4a4d1a6a99c4ab991.setOption(option_e8e3b30a70b242c4a4d1a6a99c4ab991);
+    </script>

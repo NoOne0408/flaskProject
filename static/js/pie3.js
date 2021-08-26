@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Awesome-pyecharts</title>
-            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
 
-</head>
-<body>
-    <div id="7fa5bf532c924a88b1b5a68dc21bd6d4" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
         var chart_7fa5bf532c924a88b1b5a68dc21bd6d4 = echarts.init(
             document.getElementById('7fa5bf532c924a88b1b5a68dc21bd6d4'), 'white', {renderer: 'canvas'});
@@ -128,5 +119,3 @@
 };
         chart_7fa5bf532c924a88b1b5a68dc21bd6d4.setOption(option_7fa5bf532c924a88b1b5a68dc21bd6d4);
     </script>
-</body>
-</html>

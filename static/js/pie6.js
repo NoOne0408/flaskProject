@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Awesome-pyecharts</title>
-            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
 
-</head>
-<body>
-    <div id="7fa5bf532c924a88b1b5a68dc21bd6d4" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_7fa5bf532c924a88b1b5a68dc21bd6d4 = echarts.init(
-            document.getElementById('7fa5bf532c924a88b1b5a68dc21bd6d4'), 'white', {renderer: 'canvas'});
-        var option_7fa5bf532c924a88b1b5a68dc21bd6d4 = {
+        var chart_63fc1c609d2a43b09f9e7737f3d38295 = echarts.init(
+            document.getElementById('63fc1c609d2a43b09f9e7737f3d38295'), 'white', {renderer: 'canvas'});
+        var option_63fc1c609d2a43b09f9e7737f3d38295 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -53,12 +44,24 @@
             "clockwise": true,
             "data": [
                 {
+                    "name": "0-50",
+                    "value": 2.84
+                },
+                {
+                    "name": "50-100",
+                    "value": 49.2
+                },
+                {
                     "name": "100-150",
                     "value": 33.6
                 },
                 {
-                    "name": "\u5176\u4ed6",
-                    "value": 66.4
+                    "name": "150-200",
+                    "value": 6.64
+                },
+                {
+                    "name": "200\u4ee5\u4e0a",
+                    "value": 7.58
                 }
             ],
             "radius": [
@@ -102,8 +105,11 @@
     "legend": [
         {
             "data": [
+                "0-50",
+                "50-100",
                 "100-150",
-                "\u5176\u4ed6"
+                "150-200",
+                "200\u4ee5\u4e0a"
             ],
             "selected": {}
         }
@@ -126,7 +132,5 @@
         "padding": 5
     }
 };
-        chart_7fa5bf532c924a88b1b5a68dc21bd6d4.setOption(option_7fa5bf532c924a88b1b5a68dc21bd6d4);
+        chart_63fc1c609d2a43b09f9e7737f3d38295.setOption(option_63fc1c609d2a43b09f9e7737f3d38295);
     </script>
-</body>
-</html>

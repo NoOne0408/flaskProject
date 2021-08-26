@@ -47,9 +47,41 @@ def HousePricePredictions():
     pass
 
 
+# 以字典形式返回房源检索结果 平米数在10以内波动
+@Controller.route("/SearchRes", methods=['GET', 'POST'])
+def HouseSearch():
+    jsonData = service.getHouseDataPlan()
+    return json.dumps(jsonData, ensure_ascii=False)
+    pass
+
+
 # 以字典形式返回某省/直辖市各地区不同面积房屋百分比
 @Controller.route("/AreaPercent", methods=['GET', 'POST'])
 def AreaPercent(pro="北京"):
-    preData = service.getAreaPercent(pro)
-    return json.dumps(preData, ensure_ascii=False)
+    jsonData = service.getAreaPercent(pro)
+    return json.dumps(jsonData, ensure_ascii=False)
+    pass
+
+
+# 以字典类型返回全国各省市平均价格随建造时间的变化关系
+@Controller.route("/CNPricesByTime", methods=['GET', 'POST'])
+def getPriceByTime():
+    jsonData = service.getAvgPriceByBuildTimeService()
+    return json.dumps(jsonData, ensure_ascii=False)
+    pass
+
+
+# 以字典类型返回指定省市平均价格随建造时间的变化关系
+@Controller.route("/ProPricesByTime", methods=['GET', 'POST'])
+def getProPriceByTime(pro="北京"):
+    jsonData = service.getProAvgPriceByBuildTimeService(pro)
+    return json.dumps(jsonData, ensure_ascii=False)
+    pass
+
+
+# 以字典类型返回指定区域平均价格随建造时间的变化关系
+@Controller.route("/RegPricesByTime", methods=['GET', 'POST'])
+def getRegPriceByTime(pro_reg="北京-丰台"):
+    jsonData = service.getRegAvgPriceByBuildTimeService(pro_reg)
+    return json.dumps(jsonData, ensure_ascii=False)
     pass
