@@ -22,6 +22,24 @@
 		<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}" media="all" />
 
 
+{#    <meta charset="UTF-8">#}
+{#    <title>Awesome-pyecharts</title>#}
+{#    echarts相关#}
+
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-gl.min.js"></script>
+    <script src="{{ url_for('static',filename='js/MapFile.js') }}" type="text/javascript"></script>
+
+
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/beijing.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/hebei.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/shanxi1.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/shanghai.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/gansu.js"></script>
+
+
+
+
 
 	</head>
 {#<script>#}
@@ -62,18 +80,19 @@
 						<span class="j_3"></span>
 						<span class="j_4"></span>
 						<div class="title"><img src="img/page1/icon4.png" />查房源</div>
-						<div class="data_num_box" style="height: 250px;">
+						<div class="data_num_box" style="height: 120px;">
 							<div class="data_box1 active">
                                 <div class="data_title"><h5>当前城市</h5></div>
-                                <font class="font qianlan" face="font01"><h2 id="provinceNow"></h2></font>
-                                <font class="font qianlan" face="font01"><h2 id="cityNow"></h2></font>
+                                <font class="font qianlan" face="font01"></font>
+                                <h2 id="provinceNow" class="font qianlan" face="font01"></h2>
+{#                                <font class="font qianlan" face="font01"><h2 id="cityNow"></h2></font>#}
 							</div>
 						</div>
 
 {#						<div id="echarts_data1"></div>#}
 
 
-                    <div style="height: 80px;">
+                    <div style="height: 70px;">
                         <div class="col-sm-3">
                             <div class="data_title">地址：</div>
                         </div>
@@ -93,7 +112,7 @@
                     </div>
 
 
-                    <div style="height: 80px;">
+                    <div style="height: 70px;">
                         <div class="col-sm-3">
                             <div class="data_title">房型：</div>
                         </div>
@@ -108,7 +127,7 @@
                     </div>
 
 
-                    <div style="height: 80px">
+                    <div style="height: 70px">
                         <div class="col-sm-3">
                             <div class="data_title">楼层：</div>
                         </div>
@@ -117,14 +136,11 @@
                                 {% for floorType in floorTypeList %}
                                     <option>{{ floorType }}</option>
                                 {% endfor %}
-{#                                <option value="">低层</option>#}
-{#                                <option value="">中层</option>#}
-{#                                <option value="">高层</option>#}
                             </select>
                         </div>
                     </div>
 
-                    <div style="height: 80px">
+                    <div style="height: 70px">
                         <div class="col-sm-3">
                             <div class="data_title">面积：</div>
                         </div>
@@ -137,7 +153,7 @@
                     </div>
 
 
-                    <div style="height: 80px">
+                    <div style="height: 70px">
                         <div class="col-sm-3">
                             <div class="data_title">建造年份：</div>
                         </div>
@@ -155,41 +171,69 @@
                     </div>
 
 
-                    <div class="data_num_box" style="height: 250px;">
+                    <div class="data_num_box" >
 							<div class="data_box1 active">
-                                <div class="data_title" style="height: 80px"><h3>预测房价(万元)</h3></div>
+                                <div class="data_title"><h3>预测房价(万元)</h3></div>
                             <div class="data_title"><h1 id="price"></h1></div>
 							</div>
                     </div>
 
                     </div>
+
+                    <div class="left_bottom">
+						<span class="j_1"></span>
+						<span class="j_2"></span>
+						<span class="j_3"></span>
+						<span class="j_4"></span>
+						<div class="title"><img src="img/page1/icon5.png" />房源推荐</div>
+						<div class="data_sjjm">
+							<div class="data_box2">
+								<div class="data_title">基础库</div>
+								<font class="font qianlan" face="font01">451</font>
+								<span>个</span>
+							</div>
+							<div class="data_box2">
+								<div class="data_title">主题库</div>
+								<font class="font shenlan" face="font01">876</font>
+								<span>个</span>
+							</div>
+							<div class="data_box2">
+								<div class="data_title">专题库</div>
+								<font class="font zise" face="font01">678</font>
+								<span>个</span>
+							</div>
+						</div>
+					</div>
                 </div>
 
 
 				<div class="main_center">
+
 					<div class="center_top">
 						<span class="j_1"></span>
 						<span class="j_2"></span>
 						<span class="j_3"></span>
 						<span class="j_4"></span>
-						<div class="title"><img src="img/page1/icon3.png" />实时数据归集</div>
-						<div id="center_map">
-							<ul>
-								<span class="open qianlan">开</span>
-								<li class="tiao">
-									<span class="open_btn"></span>
-									<span class="off_btn"></span>
-								</li>
-								<span class="off qianlan">关</span>
-							</ul>
-						</div>
+{#						<div class="title"><img src="img/page1/icon3.png" />实时数据归集</div>#}
+
+                        <div id="center_map">
+                            <div id="mapEchart" class="chart-container" style="width:800px; height:550px;"></div>
+{#                            <script type="text/javascript">#}
+{#                                var CityId='mapEchart';#}
+{#                                BeiJing(CityId);#}
+                                {#ShanXi(CityId);#}
+{#                            </script>#}
+                        </div>
+
 					</div>
+
+
 					<div class="center_bottom">
 						<span class="j_1"></span>
 						<span class="j_2"></span>
 						<span class="j_3"></span>
 						<span class="j_4"></span>
-						<div class="title"><img src="img/page1/icon2.png" />社区数据接入</div>
+{#						<div class="title"><img src="img/page1/icon2.png" />社区数据接入</div>#}
                           <div class="center_bottom_left">
                               <div class="allnav" id="echart4"></div>
                           </div>
@@ -226,51 +270,802 @@
 				</div>
 
 				<div class="main_right">
-					<div class="right_top">
-						<span class="j_1"></span>
-						<span class="j_2"></span>
-						<span class="j_3"></span>
-						<span class="j_4"></span>
-						<div class="title"><img src="img/page1/icon5.png" />数据建模</div>
-
-
-
-{#						<div class="data_sjjm">#}
-{#							<div class="data_box2">#}
-{#								<div class="data_title">基础库</div>#}
-{#								<font class="font qianlan" face="font01">451</font>#}
-{#								<span>个</span>#}
-{#							</div>#}
-{#							<div class="data_box2">#}
-{#								<div class="data_title">主题库</div>#}
-{#								<font class="font shenlan" face="font01">876</font>#}
-{#								<span>个</span>#}
-{#							</div>#}
-{#							<div class="data_box2">#}
-{#								<div class="data_title">专题库</div>#}
-{#								<font class="font zise" face="font01">678</font>#}
-{#								<span>个</span>#}
-{#							</div>#}
-{#						</div>#}
-
-					</div>
-
-
-
 					<div class="right_bottom">
 						<span class="j_1"></span>
 						<span class="j_2"></span>
 						<span class="j_3"></span>
 						<span class="j_4"></span>
-						<div class="title"><img src="img/page1/icon1.png" />热门库</div>
+{#						<div class="title"><img src="img/page1/icon1.png" />热门库</div>#}
                          	<div id="progress1_chart"></div>
-						<div class="qiuqiu">
-							<img src="img/page1/qiuqiu.png" />
-						</div>
-						<div id="jindu2">
+{#						<div class="qiuqiu">#}
+{#							<img src="img/page1/qiuqiu.png" />#}
+{#						</div>#}
+{#						<div id="jindu2">#}
+{##}
+{#						</div>#}
+					</div>
+
+                    <div class="right_top">
+						<span class="j_1"></span>
+						<span class="j_2"></span>
+						<span class="j_3"></span>
+						<span class="j_4"></span>
+{#						<div class="title"><img src="img/page1/icon5.png" />数据建模</div>#}
+                        <div class="data_sjjm">
+							<div id="1af4b50fc15548d4a7c1d2a0bdbe4fcf" class="data_box2" style="width:200px; height:170px;"></div>
+
+                            {{ pie1 }}
+
+{#                            <script type="text/javascript">#}
+{##}
+{#                                BeiJing("1af4b50fc15548d4a7c1d2a0bdbe4fcf")#}
+{#                                //this.#}
+{#                                this.html({{ pie1 }})#}
+{#                                $("#1af4b50fc15548d4a7c1d2a0bdbe4fcf").html("hhhhhhhhhhh")#}
+{#                                test()#}
+{#                            </script>#}
+
+
+{#    <script>#}
+{#        var chart_1af4b50fc15548d4a7c1d2a0bdbe4fcf = echarts.init(#}
+{#            document.getElementById('1af4b50fc15548d4a7c1d2a0bdbe4fcf'), 'white', {renderer: 'canvas'});#}
+{#        var option_1af4b50fc15548d4a7c1d2a0bdbe4fcf = {#}
+{#    "animation": true,#}
+{#    "animationThreshold": 2000,#}
+{#    "animationDuration": 1000,#}
+{#    "animationEasing": "cubicOut",#}
+{#    "animationDelay": 0,#}
+{#    "animationDurationUpdate": 300,#}
+{#    "animationEasingUpdate": "cubicOut",#}
+{#    "animationDelayUpdate": 0,#}
+{#    "color": [#}
+{#        "#c23531",#}
+{#        "#2f4554",#}
+{#        "#61a0a8",#}
+{#        "#d48265",#}
+{#        "#749f83",#}
+{#        "#ca8622",#}
+{#        "#bda29a",#}
+{#        "#6e7074",#}
+{#        "#546570",#}
+{#        "#c4ccd3",#}
+{#        "#f05b72",#}
+{#        "#ef5b9c",#}
+{#        "#f47920",#}
+{#        "#905a3d",#}
+{#        "#fab27b",#}
+{#        "#2a5caa",#}
+{#        "#444693",#}
+{#        "#726930",#}
+{#        "#b2d235",#}
+{#        "#6d8346",#}
+{#        "#ac6767",#}
+{#        "#1d953f",#}
+{#        "#6950a1",#}
+{#        "#918597"#}
+{#    ],#}
+{#    "series": [#}
+{#        {#}
+{#            "type": "pie",#}
+{#            "name": "\u9762\u79ef\u5360\u6bd4",#}
+{#            "clockwise": true,#}
+{#            "data": [#}
+{#                {#}
+{#                    "name": "50-100",#}
+{#                    "value": 41.9#}
+{#                },#}
+{#                {#}
+{#                    "name": "\u5176\u4ed6",#}
+{#                    "value": 58.1#}
+{#                }#}
+{#            ],#}
+{#            "radius": [#}
+{#                "50%",#}
+{#                "70%"#}
+{#            ],#}
+{#            "center": [#}
+{#                "50%",#}
+{#                "50%"#}
+{#            ],#}
+{#            "label": {#}
+{#                "show": false,#}
+{#                "position": "center",#}
+{#                "margin": 8#}
+{#            },#}
+{#            "tooltip": {#}
+{#                "show": true,#}
+{#                "trigger": "item",#}
+{#                "triggerOn": "mousemove|click",#}
+{#                "axisPointer": {#}
+{#                    "type": "line"#}
+{#                },#}
+{#                "showContent": true,#}
+{#                "alwaysShowContent": false,#}
+{#                "showDelay": 0,#}
+{#                "hideDelay": 100,#}
+{#                "textStyle": {#}
+{#                    "fontSize": 14#}
+{#                },#}
+{#                "borderWidth": 0,#}
+{#                "padding": 5#}
+{#            },#}
+{#            "rippleEffect": {#}
+{#                "show": true,#}
+{#                "brushType": "stroke",#}
+{#                "scale": 2.5,#}
+{#                "period": 4#}
+{#            }#}
+{#        }#}
+{#    ],#}
+{#    "legend": [#}
+{#        {#}
+{#            "data": [#}
+{#                "50-100",#}
+{#                "\u5176\u4ed6"#}
+{#            ],#}
+{#            "selected": {}#}
+{#        }#}
+{#    ],#}
+{#    "tooltip": {#}
+{#        "show": true,#}
+{#        "trigger": "item",#}
+{#        "triggerOn": "mousemove|click",#}
+{#        "axisPointer": {#}
+{#            "type": "line"#}
+{#        },#}
+{#        "showContent": true,#}
+{#        "alwaysShowContent": false,#}
+{#        "showDelay": 0,#}
+{#        "hideDelay": 100,#}
+{#        "textStyle": {#}
+{#            "fontSize": 14#}
+{#        },#}
+{#        "borderWidth": 0,#}
+{#        "padding": 5#}
+{#    }#}
+{#};#}
+{#        chart_1af4b50fc15548d4a7c1d2a0bdbe4fcf.setOption(option_1af4b50fc15548d4a7c1d2a0bdbe4fcf);#}
+{#    </script>#}
+{#							<div class="data_box2">#}
+								 <div id="f0458ed86c824a34b3b948f888a080e4" class="data_box2" style="width:200px; height:170px;"></div>
+    <script>
+        var chart_f0458ed86c824a34b3b948f888a080e4 = echarts.init(
+            document.getElementById('f0458ed86c824a34b3b948f888a080e4'), 'white', {renderer: 'canvas'});
+        var option_f0458ed86c824a34b3b948f888a080e4 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u9762\u79ef\u5360\u6bd4",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "0-50",
+                    "value": 5.54
+                },
+                {
+                    "name": "\u5176\u4ed6",
+                    "value": 94.46
+                }
+            ],
+            "radius": [
+                "50%",
+                "70%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": false,
+                "position": "center",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "0-50",
+                "\u5176\u4ed6"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    }
+};
+        chart_f0458ed86c824a34b3b948f888a080e4.setOption(option_f0458ed86c824a34b3b948f888a080e4);
+    </script>
+{#							</div>#}
 
 						</div>
+
+                        <div class="data_sjjm">
+							<div id="cbc38fe58cb74d2e91813eda4ee7e6b6" class="chart-container" style="width:200px; height:170px;"></div>
+    <script>
+        var chart_cbc38fe58cb74d2e91813eda4ee7e6b6 = echarts.init(
+            document.getElementById('cbc38fe58cb74d2e91813eda4ee7e6b6'), 'white', {renderer: 'canvas'});
+        var option_cbc38fe58cb74d2e91813eda4ee7e6b6 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u9762\u79ef\u5360\u6bd4",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "100-150",
+                    "value": 22.6
+                },
+                {
+                    "name": "\u5176\u4ed6",
+                    "value": 77.4
+                }
+            ],
+            "radius": [
+                "50%",
+                "70%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": false,
+                "position": "center",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "100-150",
+                "\u5176\u4ed6"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    }
+};
+        chart_cbc38fe58cb74d2e91813eda4ee7e6b6.setOption(option_cbc38fe58cb74d2e91813eda4ee7e6b6);
+    </script>
+{#							<div class="data_box2">#}
+								<div id="99ac3f72027740e5b5ba743d20377c54" class="chart-container" style="width:200px; height:170px;"></div>
+    <script>
+        var chart_99ac3f72027740e5b5ba743d20377c54 = echarts.init(
+            document.getElementById('99ac3f72027740e5b5ba743d20377c54'), 'white', {renderer: 'canvas'});
+        var option_99ac3f72027740e5b5ba743d20377c54 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u9762\u79ef\u5360\u6bd4",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "150-200",
+                    "value": 16.8
+                },
+                {
+                    "name": "\u5176\u4ed6",
+                    "value": 83.2
+                }
+            ],
+            "radius": [
+                "50%",
+                "70%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": false,
+                "position": "center",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "150-200",
+                "\u5176\u4ed6"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    }
+};
+        chart_99ac3f72027740e5b5ba743d20377c54.setOption(option_99ac3f72027740e5b5ba743d20377c54);
+    </script>
+{#							</div>#}
+						</div>
+
+                        <div class="data_sjjm">
+							<div id="e5ad5f74632442e5bf022439396a9f50" class="chart-container" style="width:200px; height:170px;"></div>
+    <script>
+        var chart_e5ad5f74632442e5bf022439396a9f50 = echarts.init(
+            document.getElementById('e5ad5f74632442e5bf022439396a9f50'), 'white', {renderer: 'canvas'});
+        var option_e5ad5f74632442e5bf022439396a9f50 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u9762\u79ef\u5360\u6bd4",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "200\u4ee5\u4e0a",
+                    "value": 13.0
+                },
+                {
+                    "name": "\u5176\u4ed6",
+                    "value": 87.0
+                }
+            ],
+            "radius": [
+                "50%",
+                "70%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": false,
+                "position": "center",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "200\u4ee5\u4e0a",
+                "\u5176\u4ed6"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    }
+};
+        chart_e5ad5f74632442e5bf022439396a9f50.setOption(option_e5ad5f74632442e5bf022439396a9f50);
+    </script>
+{#							<div class="data_box2">#}
+								 <div id="7ae24e84cda446d99e29ec37d1c77de2" class="chart-container" style="width:200px; height:170px;"></div>
+    <script>
+        var chart_7ae24e84cda446d99e29ec37d1c77de2 = echarts.init(
+            document.getElementById('7ae24e84cda446d99e29ec37d1c77de2'), 'white', {renderer: 'canvas'});
+        var option_7ae24e84cda446d99e29ec37d1c77de2 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u9762\u79ef\u5360\u6bd4",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "0-50",
+                    "value": 5.54
+                },
+                {
+                    "name": "50-100",
+                    "value": 41.9
+                },
+                {
+                    "name": "100-150",
+                    "value": 22.6
+                },
+                {
+                    "name": "150-200",
+                    "value": 16.8
+                },
+                {
+                    "name": "200\u4ee5\u4e0a",
+                    "value": 13.0
+                }
+            ],
+            "radius": [
+                "50%",
+                "70%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": false,
+                "position": "center",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "0-50",
+                "50-100",
+                "100-150",
+                "150-200",
+                "200\u4ee5\u4e0a"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    }
+};
+        chart_7ae24e84cda446d99e29ec37d1c77de2.setOption(option_7ae24e84cda446d99e29ec37d1c77de2);
+    </script>
+{#							</div>#}
+						</div>
+
+
+
 					</div>
+
+
 				</div>
 			</div>
 
@@ -312,11 +1107,16 @@ function showPosition(position)//经纬度获取
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                alert(JSON.stringify(data))
+                {#alert(JSON.stringify(data))#}
                 alert("当前所在城市："+data.province+" "+data.city+" 纬度："+lat+ "经度："+lng);
+                var echartsId='mapEchart';
+                {#HeBei(echartsId);#}
+                {#ShangHai(echartsId);#}
+                GanSu(echartsId);
+                {#BeiJing(echartsId);#}
 
-                $("#provinceNow").html(data.province)
-                $("#cityNow").html(data.city)
+                $("#provinceNow").html(data.province+":"+data.city)
+                {#$("#cityNow").html(data.city)#}
             }
         });
 
@@ -371,6 +1171,17 @@ function showError(error)//错误抛出
             success: function (data) {
                 alert(data);
                 $("#price").html(data)
+                var CityId='mapEchart';
+                {#$("#mapEchart").html('')#}
+                if(address1=="北京"){
+                    BeiJing(CityId);
+                }
+                else if(address1=="上海"){
+                    ShangHai(CityId);
+                }
+                else if(address1=="河北"){
+                    HeBei(CityId);
+                }
 
             }
         });
@@ -429,7 +1240,10 @@ function showError(error)//错误抛出
 			});
 		</script>
 
-
-
+<script>
+    function test(){
+        alert("sss");
+    }
+</script>
 
 </html>

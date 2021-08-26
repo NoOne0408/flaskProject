@@ -4,6 +4,16 @@ from view.DataToHTML import dataLoading, getCityNow
 
 app = Flask(__name__)
 
+def get_js():
+    f = open('static/js/pie1.js', 'r', encoding='utf-8')
+    line = f.readline()
+    htmlstr = ''
+    while line:
+        htmlstr = htmlstr + line
+        line = f.readline()
+    print(htmlstr)
+    return htmlstr
+
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -22,8 +32,10 @@ def prarmsSubmit():
     area = request.args.get('area')
 
     dict = {"area": [area], "floor": [floorType],"build_time": [buildTime], "location": [address1 + "-" + address2], "room_shape": [roomType]}
-
     print(dict)
+
+    pie1 = get_js()
+
     # 调用预测函数
     s = "10000"
     return s

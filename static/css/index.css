@@ -13,7 +13,7 @@
 }
 .left_top{
 	width: 100%;
-	height: 100%;
+	height: 620px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
 	position: relative;
@@ -22,7 +22,7 @@
 .left_bottom{
 	margin-top: 1.2rem;
 	width: 100%;
-	height: 600px;
+	height: 320px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
 	position: relative;
@@ -38,7 +38,7 @@
 }
 .center_top{
 	width: 100%;
-	height: 600px;
+	height: 620px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
 	position: relative;
@@ -47,7 +47,7 @@
 .center_bottom{
 	margin-top: 1.2rem;
 	width: 100%;
-	height: 340px;
+	height: 320px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
 	position: relative;
@@ -83,17 +83,19 @@
 	float: right;
 }
 .right_top{
+	margin-top: 1.2rem;
 	width: 100%;
-	height: 200px;
+	height: 500px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
+	/*background: #61a0a8;*/
 	position: relative;
 	box-sizing: border-box;
 }
 .right_bottom{
-	margin-top: 1.2rem;
+	/*margin-top: 1.2rem;*/
 	width: 100%;
-	height: 740px;
+	height: 440px;
 	border: #1a3f72 solid 2px;
 	background: rgba(41,85,252,.2);
 	position: relative;
@@ -210,6 +212,7 @@
 .data_box1,.data_box2{
 	width: 190px;
 	height: 100%;
+	/*padding: .0rem .9rem .0rem .0rem;*/
     text-align: center;
     position: relative;
 }
@@ -294,7 +297,7 @@
 	width: 100%;
 	display: flex;
 	justify-content : space-around;
-	padding: 1.8rem .2rem 2rem .2rem;
+	padding: 0cm 0.1cm;
 	
 }
 
@@ -518,7 +521,7 @@
 
 #progress1_chart{
 	width: 100%;
-	height: 60rem;
+	height: 100%;
 }
 .tab_pm{
 	width: 10.5rem;
