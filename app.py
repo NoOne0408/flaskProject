@@ -4,6 +4,9 @@ from view.DataToHTML import dataLoading, getCityNow
 
 from nut_chart import pieEcharts
 
+from flask import json
+from back_end.controller import SHHousePriceData,HBHousePriceData,BJHousePriceData,getPriceByTime,getRegPriceByTime
+
 app = Flask(__name__)
 
 
@@ -30,6 +33,62 @@ def hello_world():  # put application's code here
     roomType, floorType, years = dataLoading()
     return render_template('city.html', roomTypeList=roomType, floorTypeList=floorType, buildTimeList=years)
 
+#前端选择省/直辖市  城市/区
+#传值
+@app.route('/progress1Echarts/', methods=['POST', 'GET'])
+def progress1Echarts():
+    # provienceName = prov
+    # areaName = city
+    # dict=getLocation()
+    # prov=dict.get('province').split("市")[0]
+
+    prov="北京"
+
+    if (prov == "上海"):
+        progressData=SHHousePriceData()
+        print(progressData)
+
+
+        a = json.loads(progressData)
+    elif (prov == "北京"):
+        progressData = BJHousePriceData()
+
+        print("进入北京")
+        print(progressData)
+        a = json.loads(progressData)
+    elif (prov == "河北"):
+        progressData = HBHousePriceData()
+        print(progressData)
+        a = json.loads(progressData)
+    else:
+        print("错误错误错误")
+
+    return a
+
+#三省市对比
+@app.route('/echart4/', methods=['POST', 'GET'])
+def echart4():
+    # provienceName = prov
+    # areaName = city
+    # dict=getLocation()
+    # prov=dict.get('province').split("市")[0]
+    compareData=getPriceByTime()
+    a = json.loads(compareData)
+    print("进入echart4")
+    print(compareData)
+    return a
+
+#本地对比
+@app.route('/loadTime/', methods=['POST', 'GET'])
+def loadTime():
+    address1 = request.args.get('address1')
+    address2 = request.args.get('address2').split("区")[0]
+    dict=address1+"-"+address2
+    compareData=getRegPriceByTime(dict)
+    a = json.loads(compareData)
+    print("进入loadTime")
+    print(compareData)
+    return a
 
 # 获得预测值
 @app.route('/prarmsSubmit/', methods=['POST', 'GET'])
@@ -49,6 +108,8 @@ def prarmsSubmit():
     s = "10000"
 
     pieEcharts(address1, address2)
+    #echart4()
+    # progress1Echarts(address1, address2)
 
     hpath1 = 'nut_0_50.html'
     hpath2 = 'nut_50_100.html'
@@ -118,6 +179,25 @@ def getLocation():
     dict = getCityNow(latitude, longitude)
     return dict
 
+# 返回区时价字典
+# @app.route('/getCityTimeToPrice/', methods=['POST', 'GET'])
+# def getCityTimeToPrice():
+#     address1 = request.args.get('address1')
+#     address2 = request.args.get('address2').split("区")[0]
+#     roomType = request.args.get('roomType')
+#     floorType = request.args.get('floorType')
+#     buildTime = request.args.get('buildTime')
+#     area = request.args.get('area')
+#
+#     dict = {"area": [area], "floor": [floorType],"build_time": [buildTime], "location": [address1 + "-" + address2], "room_shape": [roomType]}
+#     print(dict)
+#
+#     pie1 = get_js()
+#
+#     # 调用预测函数
+#     s = "10000"
+#     return s
+#返回市时价字典
 
 if __name__ == '__main__':
     app.run()

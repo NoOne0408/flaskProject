@@ -26,7 +26,8 @@
 {#    <title>Awesome-pyecharts</title>#}
 {#    echarts相关#}
 
-    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script src="{{ url_for('static',filename='js/echart_part1.js') }}" type="text/javascript" ></script>
+     <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
     <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-gl.min.js"></script>
     <script src="{{ url_for('static',filename='js/MapFile.js') }}" type="text/javascript"></script>
 
@@ -410,7 +411,7 @@ function showError(error)//错误抛出
         var buildTime = $("#build_Type").find("option:selected").text();
         var area = $("#area").val()
         alert("地址：" + address1 + " " + address2 + "\n" + "房型：" + roomType + "\n" + "建造时间：" + buildTime + "\n" + "面积：" + area);
-
+loadTimeStepDetail(address1,address2)
         var data = {
             'address1': address1,
             'address2': address2,
