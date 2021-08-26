@@ -1,8 +1,8 @@
 
     <script>
-        var chart_63fc1c609d2a43b09f9e7737f3d38295 = echarts.init(
-            document.getElementById('63fc1c609d2a43b09f9e7737f3d38295'), 'white', {renderer: 'canvas'});
-        var option_63fc1c609d2a43b09f9e7737f3d38295 = {
+        var chart_839eebf0ce3648f7aa3b250a92c31fd0 = echarts.init(
+            document.getElementById('839eebf0ce3648f7aa3b250a92c31fd0'), 'white', {renderer: 'canvas'});
+        var option_839eebf0ce3648f7aa3b250a92c31fd0 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -45,23 +45,23 @@
             "data": [
                 {
                     "name": "0-50",
-                    "value": 2.84
+                    "value": 9.43
                 },
                 {
                     "name": "50-100",
-                    "value": 49.2
+                    "value": 65.09
                 },
                 {
                     "name": "100-150",
-                    "value": 33.6
+                    "value": 16.04
                 },
                 {
                     "name": "150-200",
-                    "value": 6.64
+                    "value": 8.49
                 },
                 {
                     "name": "200\u4ee5\u4e0a",
-                    "value": 7.58
+                    "value": 0.9400000000000001
                 }
             ],
             "radius": [
@@ -132,5 +132,5 @@
         "padding": 5
     }
 };
-        chart_63fc1c609d2a43b09f9e7737f3d38295.setOption(option_63fc1c609d2a43b09f9e7737f3d38295);
+        chart_839eebf0ce3648f7aa3b250a92c31fd0.setOption(option_839eebf0ce3648f7aa3b250a92c31fd0);
     </script>

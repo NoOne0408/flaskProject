@@ -11,33 +11,40 @@ def pieEcharts(prov,city):
     areaName = city
 
     areaPercent = AreaPercent(provienceName)
-    print(areaPercent)
-    a = json.loads(areaPercent)
 
-    if '0-50' in a[areaName]:
-        percent050 = float(a[areaName]['0-50'][0:4])
-    else:
-        percent050 = 0
+    # print(areaPercent)
 
-    if '50-100' in a[areaName]:
-        percent50100 = float(a[areaName]['50-100'][0:4])
-    else:
-        percent50100 = 0;
+    if areaName in areaPercent:
+        a = json.loads(areaPercent)
+        if '0-50' in a[areaName]:
+            percent050 = float(a[areaName]['0-50'].strip('%'))
+        else:
+            percent050 = 0
 
-    if '100-150' in a[areaName]:
-        percent100150 = float(a[areaName]['100-150'][0:4])
-    else:
-        percent100150 = 0;
+        if '50-100' in a[areaName]:
+            percent50100 = float(a[areaName]['50-100'].strip('%'))
+        else:
+            percent50100 = 0;
 
-    if '150-200' in a[areaName]:
-        percent150200 = float(a[areaName]['150-200'][0:4])
-    else:
-        percent150200 = 0;
+        if '100-150' in a[areaName]:
+            percent100150 = float(a[areaName]['100-150'].strip('%'))
+        else:
+            percent100150 = 0;
 
-    if '200以上' in a[areaName]:
-        percent200 = float(a[areaName]['200以上'][0:4])
+        if '150-200' in a[areaName]:
+            percent150200 = float(a[areaName]['150-200'].strip('%'))
+        else:
+            percent150200 = 0;
+
+        if '200以上' in a[areaName]:
+            percent200 = float(a[areaName]['200以上'].strip('%'))
+        else:
+            percent200 = 0;
+
+        pass
     else:
-        percent200 = 0;
+        percent050 = percent50100 = percent100150 = percent150200 = percent200 = 0
+        pass
 
     ###全部面积分类饼图
 

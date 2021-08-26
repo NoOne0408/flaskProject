@@ -1,8 +1,8 @@
 
     <script>
-        var chart_7fa5bf532c924a88b1b5a68dc21bd6d4 = echarts.init(
-            document.getElementById('7fa5bf532c924a88b1b5a68dc21bd6d4'), 'white', {renderer: 'canvas'});
-        var option_7fa5bf532c924a88b1b5a68dc21bd6d4 = {
+        var chart_8e4d8a715c154513b16b6e4c3ffe2d9a = echarts.init(
+            document.getElementById('8e4d8a715c154513b16b6e4c3ffe2d9a'), 'white', {renderer: 'canvas'});
+        var option_8e4d8a715c154513b16b6e4c3ffe2d9a = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -45,11 +45,11 @@
             "data": [
                 {
                     "name": "100-150",
-                    "value": 33.6
+                    "value": 16.04
                 },
                 {
                     "name": "\u5176\u4ed6",
-                    "value": 66.4
+                    "value": 83.96000000000001
                 }
             ],
             "radius": [
@@ -117,5 +117,5 @@
         "padding": 5
     }
 };
-        chart_7fa5bf532c924a88b1b5a68dc21bd6d4.setOption(option_7fa5bf532c924a88b1b5a68dc21bd6d4);
+        chart_8e4d8a715c154513b16b6e4c3ffe2d9a.setOption(option_8e4d8a715c154513b16b6e4c3ffe2d9a);
     </script>

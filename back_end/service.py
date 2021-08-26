@@ -65,20 +65,20 @@ class Service:
         pass
 
     # 根据所给条件进行房价预测 返回全直辖市/省 区域：价格 字典
-    def getPricePredictions(self, **kv):
+    def getPricePredictions(self, kv):
         result = None
         try:
-            result = self.priceDao.randomForestForHouseData(**kv)
+            result = self.priceDao.randomForestForHouseData(kv)
         finally:
             self.priceDao.close()
         return result
         pass
 
     # 根据所给条件进行房源检索 返回符合条件的全信息字典 键为序号
-    def getHouseDataPlan(self, **kv):
+    def getHouseDataPlan(self, kv):
         result = None
         try:
-            result = self.priceDao.searchHouse(**kv)
+            result = self.priceDao.searchHouse(kv)
         finally:
             self.priceDao.close()
         return result

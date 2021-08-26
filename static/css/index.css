@@ -224,6 +224,13 @@
 	font-size: 1.2rem;
 	line-height: 40px;
 }
+.data_title1{
+	width: 100%;
+	height: 30px;
+	color: #FFFFFF;
+	font-size: 0.8rem;
+	line-height: 40px;
+}
 .data_box1 span,.data_box2 span{
 	color: #FFFFFF;
 	font-size: 1.2rem;
@@ -521,7 +528,7 @@
 
 #progress1_chart{
 	width: 100%;
-	height: 100%;
+	height: 60rem;
 }
 .tab_pm{
 	width: 10.5rem;

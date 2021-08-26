@@ -41,16 +41,16 @@ def CNHousePriceData():
 
 # 以字典形式返回平均价格的预测结果
 @Controller.route("/PricePre", methods=['GET', 'POST'])
-def HousePricePredictions():
-    preData = service.getPricePredictions()
+def HousePricePredictions(kv):
+    preData = service.getPricePredictions(kv)
     return json.dumps(preData, ensure_ascii=False)
     pass
 
 
 # 以字典形式返回房源检索结果 平米数在10以内波动
 @Controller.route("/SearchRes", methods=['GET', 'POST'])
-def HouseSearch():
-    jsonData = service.getHouseDataPlan()
+def HouseSearch(kv):
+    jsonData = service.getHouseDataPlan(kv)
     return json.dumps(jsonData, ensure_ascii=False)
     pass
 

@@ -1,8 +1,12 @@
+import json
+
 from flask import Flask, render_template, request
 
 from view.DataToHTML import dataLoading, getCityNow
 
 from nut_chart import pieEcharts
+from back_end.controller import HouseSearch, HousePricePredictions
+from back_end.pricedao import PriceDao
 
 from flask import json
 from back_end.controller import SHHousePriceData,HBHousePriceData,BJHousePriceData,getPriceByTime,getRegPriceByTime
@@ -66,7 +70,7 @@ def progress1Echarts():
     return a
 
 #三省市对比
-@app.route('/echart4/', methods=['POST', 'GET'])
+# @app.route('/echart4/', methods=['POST', 'GET'])
 def echart4():
     # provienceName = prov
     # areaName = city
@@ -102,10 +106,19 @@ def prarmsSubmit():
 
     dict = {"area": [area], "floor": [floorType], "build_time": [buildTime], "location": [address1 + "-" + address2],
             "room_shape": [roomType]}
+
     print(dict)
+    relist1 = HousePricePredictions(dict)
+    relist1 = json.loads(relist1)[address2]
+    print(relist1)
+
+    priceDao = PriceDao()
+    res = priceDao.searchHouse(dict)
+    res=json.dumps(res)
+    print(res)
 
     # 调用预测函数
-    s = "10000"
+    s = relist1
 
     pieEcharts(address1, address2)
     #echart4()
@@ -141,31 +154,30 @@ def prarmsSubmit():
 
     print("p1")
     pie1id = get_js(fpath1).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie1 = get_js(fpath1).replace(pie1id, "1af4b50fc15548d4a7c1d2a0bdbe4fcfhhhh")
+    pie1 = get_js(fpath1).replace(pie1id, "pie1div")
 
     print("p2")
     pie2id = get_js(fpath2).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie2 = get_js(fpath2).replace(pie2id, "f0458ed86c824a34b3b948f888a080e4")
+    pie2 = get_js(fpath2).replace(pie2id, "pie2div")
 
     print("p3")
     pie3id = get_js(fpath3).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie3 = get_js(fpath3).replace(pie3id, "cbc38fe58cb74d2e91813eda4ee7e6b6")
+    pie3 = get_js(fpath3).replace(pie3id, "pie3div")
 
     print("p4")
     pie4id = get_js(fpath4).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie4 = get_js(fpath4).replace(pie4id, "99ac3f72027740e5b5ba743d20377c54")
+    pie4 = get_js(fpath4).replace(pie4id, "pie4div")
 
     print("p5")
     pie5id = get_js(fpath5).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie5 = get_js(fpath5).replace(pie5id, "e5ad5f74632442e5bf022439396a9f50")
+    pie5 = get_js(fpath5).replace(pie5id, "pie5div")
 
     print("p6")
     pie6id = get_js(fpath6).split("echarts.init")[0].split("_")[1].split("=")[0].replace(" ", "")
-    pie6 = get_js(fpath6).replace(pie6id, "7ae24e84cda446d99e29ec37d1c77de2")
+    pie6 = get_js(fpath6).replace(pie6id, "pie6div")
 
-    print(pie2)
-
-    data = {"price": s, "pie1": pie1, "pie2": pie2, "pie3": pie3, "pie4": pie4, "pie5": pie5, "pie6": pie6}
+    data = {"price": s, "recmRoom": res, "pie1": pie1, "pie2": pie2, "pie3": pie3, "pie4": pie4, "pie5": pie5,
+            "pie6": pie6}
 
     return data
 
@@ -176,28 +188,12 @@ def getLocation():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
 
-    dict = getCityNow(latitude, longitude)
+    city = getCityNow(latitude, longitude)
+    a=echart4()
+    dict={"city":city,"charts":a}
     return dict
 
-# 返回区时价字典
-# @app.route('/getCityTimeToPrice/', methods=['POST', 'GET'])
-# def getCityTimeToPrice():
-#     address1 = request.args.get('address1')
-#     address2 = request.args.get('address2').split("区")[0]
-#     roomType = request.args.get('roomType')
-#     floorType = request.args.get('floorType')
-#     buildTime = request.args.get('buildTime')
-#     area = request.args.get('area')
-#
-#     dict = {"area": [area], "floor": [floorType],"build_time": [buildTime], "location": [address1 + "-" + address2], "room_shape": [roomType]}
-#     print(dict)
-#
-#     pie1 = get_js()
-#
-#     # 调用预测函数
-#     s = "10000"
-#     return s
-#返回市时价字典
+
 
 if __name__ == '__main__':
     app.run()
